@@ -10,6 +10,9 @@ private:
   SDL_Renderer *renderer;
   int ticksLastFrame;
 
+  bool LoadShaders();
+  void GenerateOutput();
+
 public:
   bool isRunning;
 

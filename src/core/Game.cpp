@@ -10,6 +10,34 @@ Game::Game() {
 
 Game::~Game() {}
 
+bool Game::LoadShaders()
+{
+	mSpriteShader = new Shader();
+	if (!mSpriteShader->Load("Shaders/Basic.vert", "Shaders/Basic.frag"))
+	{
+		return false;
+	}
+	mSpriteShader->SetActive();
+}
+
+void Game::GenerateOutput()
+{
+  glClearColor(0.86f, 0.86f, 0.86f, 1.0f);
+  	// Clear the color buffer
+	glClear(GL_COLOR_BUFFER_BIT);
+
+	// Set shader/vao as active
+	mSpriteShader->SetActive();
+	mSpriteVerts->SetActive();
+	for (auto sprite : mSprites)
+	{
+		sprite->Draw(mSpriteShader);
+	}
+
+	// Swap the buffers
+	SDL_GL_SwapWindow(mWindow);
+}
+
 void Game::initialize(int width, int height) {
   if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
     std::cerr << "Error initializing SDL." << std::endl;

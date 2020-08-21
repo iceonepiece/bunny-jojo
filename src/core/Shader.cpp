@@ -1,5 +1,4 @@
 #include "Shader.hpp"
-#include "Texture.h"
 #include <SDL2/SDL.h>
 #include <fstream>
 #include <sstream>
@@ -48,7 +47,6 @@ bool Shader::Load(const std::string& vertName, const std::string& fragName)
 
 void Shader::Unload()
 {
-	// Delete the program/shaders
 	glDeleteProgram(mShaderProgram);
 	glDeleteShader(mVertexShader);
 	glDeleteShader(mFragShader);
@@ -58,14 +56,6 @@ void Shader::SetActive()
 {
 	// Set this program as the active one
 	glUseProgram(mShaderProgram);
-}
-
-void Shader::SetMatrixUniform(const char* name, const Matrix4& matrix)
-{
-	// Find the uniform by this name
-	GLuint loc = glGetUniformLocation(mShaderProgram, name);
-	// Send the matrix data to the uniform
-	glUniformMatrix4fv(loc, 1, GL_TRUE, matrix.GetAsFloatPtr());
 }
 
 bool Shader::CompileShader(const std::string& fileName,
