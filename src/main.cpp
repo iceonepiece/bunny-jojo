@@ -1,17 +1,13 @@
 #include "./core/Game.hpp"
 
 int main(int argc, char** argv) {
-  Game game = Game();
+  Game game;
+  bool success = game.Initialize();
 
-  game.initialize(800, 600);
-
-  while (game.isRunning) {
-    game.processInput();
-    game.update();
-    game.render();
+  if (success) {
+    game.RunLoop();
   }
-
-  game.destroy();
+  game.Shutdown();
 
   return 0;
 }

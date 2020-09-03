@@ -4,24 +4,18 @@
 #include <SDL2/SDL.h>
 
 class Game {
-private:
-  SDL_Window *window;
-  SDL_GLContext mContext;
-  SDL_Renderer *renderer;
-  int ticksLastFrame;
+public:
+  Game();
+  bool Initialize();
+  void RunLoop();
+  void Shutdown();
 
-  bool LoadShaders();
+private:
+  void ProcessInput();
+  void UpdateGame();
   void GenerateOutput();
 
-public:
-  bool isRunning;
-
-  Game();
-  ~Game();
-
-  void initialize(int width, int height);
-  void processInput();
-  void update();
-  void render();
-  void destroy();
+  SDL_Window* mWindow;
+  SDL_GLContext mContext;
+  bool mIsRunning;
 };
