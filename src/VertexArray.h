@@ -1,7 +1,7 @@
 // ----------------------------------------------------------------
 // From Game Programming in C++ by Sanjay Madhav
 // Copyright (C) 2017 Sanjay Madhav. All rights reserved.
-// 
+//
 // Released under the BSD License
 // See LICENSE in root directory for full details.
 // ----------------------------------------------------------------
@@ -14,9 +14,7 @@ public:
 		const unsigned int* indices, unsigned int numIndices);
 	~VertexArray();
 
-	// Activate this vertex array (so we can draw it)
 	void SetActive();
-
 	unsigned int GetNumIndices() const { return mNumIndices; }
 	unsigned int GetNumVerts() const { return mNumVerts; }
 private:
