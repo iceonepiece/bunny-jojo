@@ -1,7 +1,7 @@
 // ----------------------------------------------------------------
 // From Game Programming in C++ by Sanjay Madhav
 // Copyright (C) 2017 Sanjay Madhav. All rights reserved.
-// 
+//
 // Released under the BSD License
 // See LICENSE in root directory for full details.
 // ----------------------------------------------------------------
@@ -11,6 +11,7 @@
 #include "Shader.h"
 #include "Actor.h"
 #include "Game.h"
+#include "Renderer.h"
 
 SpriteComponent::SpriteComponent(Actor* owner, int drawOrder)
 	:Component(owner)
@@ -19,12 +20,12 @@ SpriteComponent::SpriteComponent(Actor* owner, int drawOrder)
 	,mTexWidth(0)
 	,mTexHeight(0)
 {
-	mOwner->GetGame()->AddSprite(this);
+	mOwner->GetGame()->GetRenderer()->AddSprite(this);
 }
 
 SpriteComponent::~SpriteComponent()
 {
-	mOwner->GetGame()->RemoveSprite(this);
+	mOwner->GetGame()->GetRenderer()->RemoveSprite(this);
 }
 
 void SpriteComponent::Draw(Shader* shader)
@@ -36,12 +37,12 @@ void SpriteComponent::Draw(Shader* shader)
 			static_cast<float>(mTexWidth),
 			static_cast<float>(mTexHeight),
 			1.0f);
-		
+
 		Matrix4 world = scaleMat * mOwner->GetWorldTransform();
-		
+
 		// Since all sprites use the same shader/vertices,
 		// the game first sets them active before any sprite draws
-		
+
 		// Set world transform
 		shader->SetMatrixUniform("uWorldTransform", world);
 		// Set current texture

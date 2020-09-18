@@ -6,15 +6,15 @@
 // See LICENSE in root directory for full details.
 // ----------------------------------------------------------------
 
-#pragma once
-#include "Actor.h"
-class Asteroid : public Actor
+#include "PlaneActor.h"
+#include "Game.h"
+#include "Renderer.h"
+#include "MeshComponent.h"
+
+PlaneActor::PlaneActor(Game* game)
+	:Actor(game)
 {
-public:
-	Asteroid(class Game* game);
-	~Asteroid();
-	
-	class CircleComponent* GetCircle() { return mCircle; }
-private:
-	class CircleComponent* mCircle;
-};
+	SetScale(10.0f);
+	MeshComponent* mc = new MeshComponent(this);
+	mc->SetMesh(GetGame()->GetRenderer()->GetMesh("Assets/Plane.gpmesh"));
+}

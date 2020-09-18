@@ -9,15 +9,17 @@
 // Request GLSL 3.3
 #version 330
 
-// This should correspond to the data stored
-// for each vertex in the vertex buffer.
-// For now, just a position.
-in vec3 inPosition;
+// Tex coord input from vertex shader
+in vec2 fragTexCoord;
+
+// This corresponds to the output color to the color buffer
+out vec4 outColor;
+
+// This is used for the texture sampling
+uniform sampler2D uTexture;
 
 void main()
 {
-	// The vertex shader needs to output a 4D
-	// coordinate.
-	// For now set the 4th coordinate to 1.0
-	gl_Position = vec4(inPosition, 1.0);
+	// Sample color from texture
+    outColor = texture(uTexture, fragTexCoord);
 }

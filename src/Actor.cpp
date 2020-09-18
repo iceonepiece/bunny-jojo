@@ -13,9 +13,9 @@
 
 Actor::Actor(Game* game)
 	:mState(EActive)
-	,mPosition(Vector2::Zero)
+	,mPosition(Vector3::Zero)
+	,mRotation(Quaternion::Identity)
 	,mScale(1.0f)
-	,mRotation(0.0f)
 	,mGame(game)
 	,mRecomputeWorldTransform(true)
 {

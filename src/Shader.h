@@ -1,7 +1,7 @@
 // ----------------------------------------------------------------
 // From Game Programming in C++ by Sanjay Madhav
 // Copyright (C) 2017 Sanjay Madhav. All rights reserved.
-// 
+//
 // Released under the BSD License
 // See LICENSE in root directory for full details.
 // ----------------------------------------------------------------
@@ -23,12 +23,16 @@ public:
 	void SetActive();
 	// Sets a Matrix uniform
 	void SetMatrixUniform(const char* name, const Matrix4& matrix);
+	// Sets a Vector3 uniform
+	void SetVectorUniform(const char* name, const Vector3& vector);
+	// Sets a float uniform
+	void SetFloatUniform(const char* name, float value);
 private:
 	// Tries to compile the specified shader
 	bool CompileShader(const std::string& fileName,
 					   GLenum shaderType,
 					   GLuint& outShader);
-	
+
 	// Tests whether shader compiled successfully
 	bool IsCompiled(GLuint shader);
 	// Tests whether vertex/fragment programs link
